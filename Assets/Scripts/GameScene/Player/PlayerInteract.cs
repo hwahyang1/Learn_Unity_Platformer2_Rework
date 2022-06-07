@@ -40,11 +40,11 @@ namespace _20220531_Platform2Rework.GameScene.Player
 		}
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			ChageInteractable(false);
+			ChageInteractable(false, collision);
 		}
 
 		/*
-		 * [Method] ChageInteractable(bool interactable, Collider2D collision = null)
+		 * [Method] ChageInteractable(bool interactable, Collider2D collision = null): void
 		 * 플레이어의 상호작용 가능 여부를 정의합니다.
 		 * 
 		 * <bool interactable>
@@ -53,12 +53,12 @@ namespace _20220531_Platform2Rework.GameScene.Player
 		 * <Collider2D collision = null>
 		 * 상호작용이 가능한 GameObject를 담습니다.
 		 */
-		private void ChageInteractable(bool interactable, Collider2D collision = null)
+		private void ChageInteractable(bool interactable, Collider2D collision)
 		{
 			if (collision.tag == "Interactable")
 			{
 				isInteractable = interactable;
-				interactableObject = (collision == null) ? null : collision.gameObject;
+				interactableObject = (interactable) ? collision.gameObject : null;
 			}
 		}
 	}
