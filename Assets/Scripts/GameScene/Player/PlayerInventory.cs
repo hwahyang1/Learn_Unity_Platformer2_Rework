@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using _20220531_Platform2Rework.GameScene.Managers;
+using _20220531_Platform2Rework.GameScene.UI;
 
 /*
  * [Namespace] _20220531_Platform2Rework.GameScene.Player
@@ -14,9 +15,13 @@ namespace _20220531_Platform2Rework.GameScene.Player
 	/*
 	 * [Class] PlayerInventory
 	 * 플레이어의 인벤토리를 관리합니다.
+	 * 인벤토리 UI의 갱신 타이밍 또한 관리합니다.
 	 */
 	public class PlayerInventory : MonoBehaviour
 	{
+		[SerializeField]
+		private InventoryUI inventoryUI;
+
 		public byte inventorySize = 5;
 		private ItemCode[] inventory;
 
@@ -58,6 +63,7 @@ namespace _20220531_Platform2Rework.GameScene.Player
 				if (inventory[i] == ItemCode.None)
 				{
 					inventory[i] = item;
+					inventoryUI.UpdateUI(inventory);
 					return 0;
 				}
 				if (i == inventorySize - 1)
@@ -88,6 +94,7 @@ namespace _20220531_Platform2Rework.GameScene.Player
 				if (inventory[i] == item)
 				{
 					inventory[i] = ItemCode.None;
+					inventoryUI.UpdateUI(inventory);
 					return 0;
 				}
 				if (i == inventorySize - 1)
@@ -108,6 +115,7 @@ namespace _20220531_Platform2Rework.GameScene.Player
 			{
 				inventory[i] = ItemCode.None;
 			}
+			inventoryUI.UpdateUI(inventory);
 		}
 	}
 }
