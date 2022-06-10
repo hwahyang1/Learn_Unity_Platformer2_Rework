@@ -14,6 +14,8 @@
     - easy UI emerald - default by astr999 ([링크](https://assetstore.unity.com/packages/2d/gui/icons/easy-ui-emerald-default-112796))
     - Nature - Essentials by Nox_Sound ([링크](https://assetstore.unity.com/packages/audio/ambient/nature/nature-essentials-208227))
     - NaughtyAttributes by Denis Rizov ([링크](https://assetstore.unity.com/packages/tools/utilities/naughtyattributes-129996))
+- 폰트
+    - 넥슨 메이플스토리 ([링크](http://levelup.nexon.com/font/index.aspx?page=5))
 
 ## 실행 파일
 
