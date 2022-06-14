@@ -5,7 +5,7 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-using _20220531_Platform2Rework.GameScene.UI;
+using _20220531_Platform2Rework.GameScene.Props;
 
 /*
  * [Namespace] _20220531_Platform2Rework.GameScene.Player
@@ -36,6 +36,17 @@ namespace _20220531_Platform2Rework.GameScene.Player
 		[ShowNonSerializedField]
 		private GameObject interactableObject = null;
 
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				if (isInteractable)
+				{
+					interactableObject.GetComponent<EventProp>().OnInteract();
+				}
+			}
+		}
+
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			ChageInteractable(true, collision);
@@ -62,22 +73,6 @@ namespace _20220531_Platform2Rework.GameScene.Player
 				isInteractable = interactable;
 				interactableObject = (interactable) ? collision.gameObject : null;
 			}
-		}
-
-		/* 테스트용 임시 메소드입니다 */
-		public void GiveItemTemp()
-		{
-			int res = gameObject.GetComponent<PlayerInventory>().GiveItem(Managers.ItemCode.Envelop);
-			Debug.Log("GiveItem Button Clicked: " + res);
-		}
-
-		[SerializeField]
-		private GameObject tempScriptObject;
-		public void ShowTextTemp()
-		{
-			string[] tempScripts = { "테스트용 대사입니다.\n111111111111", "테스트용 대사입니다.\n2222222222" };
-			int res = tempScriptObject.GetComponent<ShowScript>().PrintScript(tempScripts);
-			Debug.Log("ShowText Button Clicked: " + res);
 		}
 	}
 }
