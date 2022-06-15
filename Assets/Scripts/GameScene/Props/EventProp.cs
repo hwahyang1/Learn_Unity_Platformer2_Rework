@@ -35,7 +35,9 @@ namespace _20220531_Platform2Rework.GameScene.Props
 		protected virtual void Start()
 		{
 			playerInventory = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerInventory>();
-			script = GameObject.FindGameObjectWithTag("Scripter").gameObject.GetComponent<ShowScript>();
+
+			ShowScript[] objs = Resources.FindObjectsOfTypeAll<ShowScript>();
+			script = objs[0];
 
 			takeItem = _takeItem.ToArray();
 			giveItem = _giveItem.ToArray();

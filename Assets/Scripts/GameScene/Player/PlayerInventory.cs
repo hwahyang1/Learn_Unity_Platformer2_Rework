@@ -126,28 +126,46 @@ namespace _20220531_Platform2Rework.GameScene.Player
 			// 2-1. 전부 None이면 위치를 백업한 변수를 통해 아이템 회수
 			// 2-2. None이 아닌 코드가 하나라도 있으면 회수하지 않고 -1 반환.
 
+			ItemCode[] targetItems = new ItemCode[item.Length];
+			for (int i = 0; i < item.Length; i++)
+			{
+				targetItems[i] = item[i];
+			}
+
 			byte targetSlotsCount = 0;
-			byte[] targetSlots = new byte[item.Length];
+			byte[] targetSlots = new byte[targetItems.Length];
 
 			for (byte i = 0; i < inventorySize; i++) // 인벤
 			{
-				for (byte j = 0; j < item.Length; j++) // 대상 템
+				for (byte j = 0; j < targetItems.Length; j++) // 대상 템
 				{
 					if (inventory[i] == ItemCode.None)
 					{
 						continue;
 					}
 
-					if (inventory[i] == item[j])
+					if (inventory[i] == targetItems[j])
 					{
-						item[j] = ItemCode.None;
+						bool isDuplicate = false;
+
+						for (int k = 0; k < targetSlotsCount; k++) // 같은 템을 여러개 회수 할 경우, 회수 대상 슬롯이 하나만 지정되는 문제 방지
+						{
+							if (targetSlots[targetSlotsCount] == i)
+							{
+								isDuplicate = true;
+							}
+						}
+
+						if (isDuplicate) continue;
+
+						targetItems[j] = ItemCode.None;
 						targetSlots[targetSlotsCount] = i;
 						targetSlotsCount++;
 					}
 				}
 			}
 
-			if (item.Length != targetSlotsCount)
+			if (targetItems.Length != targetSlotsCount)
 			{
 				return 1;
 			}
