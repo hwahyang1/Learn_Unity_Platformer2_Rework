@@ -66,7 +66,7 @@ namespace _20220531_Platform2Rework.GameScene.UI
 					}
 					else
 					{
-						if (stack == scripts.Length - 1) // 출력할 대사가 더 남은 경우
+						if (stack < scripts.Length) // 출력할 대사가 더 남은 경우
 						{
 							isWaitForInput = false;
 							isScriptPrinting = true;
